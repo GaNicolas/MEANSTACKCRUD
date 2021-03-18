@@ -1,0 +1,29 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+
+
+
+
+<div>
+  <img src="/assets/img/PangoSignUp.png" id="icon" alt="Pangolin icon"/>
+</div>
+<form #updateForm="ngForm" (ngSubmit)="updateForm.valid && onSubmit(updateForm)" *ngIf="pangolinDetails">
+  <input  type="hidden" #_id="ngModel" [(ngModel)]="this.pangolinDetails._id"  name="_id">
+  <input  type="text" #login="ngModel" [(ngModel)]="this.pangolinDetails.login" disabled=true name="login">
+  <input  type="text" #age="ngModel" [(ngModel)]="this.pangolinDetails.age" name="age" placeholder="Age"
+ [ngClass]="{ 'invalid-textbox' :updateForm.submitted && !age.valid }">
+  <div *ngIf="updateForm.submitted && !age.valid">
+    <label class="validation-message">Age = nombre</label>
+  </div>
+  <input type="text" #race="ngModel" [(ngModel)]="this.pangolinDetails.race" name="race" placeholder="Race">
+
+  <input type="text" #nourriture="ngModel" [(ngModel)]="this.pangolinDetails.nourriture" name="nourriture" placeholder="Nourriture">
+  <input  type="hidden" #friends="ngModel" [(ngModel)]="this.pangolinDetails.friends"  name="friends">
+
+  <input type="submit" value="Update">
+  <input type="button" value="Cancel" (click)="onCancel(updateForm)">
+</form>
+
+
+</div>
+</div>

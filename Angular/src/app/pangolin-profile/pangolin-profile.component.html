@@ -1,0 +1,84 @@
+<div class='profile'>
+  <ul id='friend-list' *ngIf="pangolinDetails">
+    <li class='friend selected'>
+      <div class='name'>
+          Amis :
+      </div>
+    </li>
+    <li *ngFor="let pango of this.pangolinDetails['friends']" class='friend'>
+      <div class='name'>
+        {{pango.login}} <a class="action-btn" (click)="onRemove(pango)"><i class="material-icons">delete</i></a>
+      </div>
+    </li>
+  </ul>
+
+  <table *ngIf="pangolinDetails" class="table-fill">
+    <thead>
+      <tr>
+        <th colspan="2" class="text-center">
+          <a class="action-btn" (click)="refreshPangolinList()"><i class="material-icons">autorenew</i></a>
+          Pangolin profil
+          <a class="action-btn" (click)="onEdit()"><i class="material-icons">edit</i></a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Nom :</td>
+        <td>{{pangolinDetails.login}}</td>
+      </tr>
+      <tr *ngIf="pangolinDetails.age">
+        <td>Age :</td>
+        <td>{{pangolinDetails.age}}</td>
+      </tr>
+      <tr *ngIf="pangolinDetails.race">
+        <td>Race :</td>
+        <td>{{pangolinDetails.race}}</td>
+      </tr>
+      <tr *ngIf="pangolinDetails.nourriture">
+        <td>Nourriture :</td>
+        <td>{{pangolinDetails.nourriture}}</td>
+      </tr>
+      <td colspan="2" class="text-center">
+       <input type="button" (click)="onLogout()" value="Logout"/>
+      </td>
+    </tbody>
+    <tbody>
+      <tr>
+        <td>Recherche :</td>
+        <td><form #signInForm="ngForm" (ngSubmit)="signInForm.valid && onSubmit(signInForm)">
+          <input type="text" name="login" #login="ngModel" [(ngModel)]="this.pango.login" placeholder="Nom" required
+          [ngClass]="{'invalid-textbox': signInForm.submitted  && !login.valid}">
+          <div *ngIf="signInForm.submitted && !login.valid">
+            <label class="validation-message">Champs requis</label>
+          </div>
+          <input type="submit" value="Inscription">
+          <div class="alert" *ngIf="showErrorMessage">
+            {{serverErrorMessage}}
+
+          </div>
+          <div class="success" *ngIf="showSuccessMessage">
+            Enregistré !
+          </div>
+      </form></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ul id='account-list'>
+    <li class='friend selected'>
+      <div class='name'>
+        Inscrits :
+      </div>
+    </li>
+    <ng-container *ngIf="this.pangolinDetails">
+      <ng-container *ngFor="let pango of this.pangolinService.pangolins"  >
+        <li  class='friend'>
+          <div class='name'>
+          {{pango.login}} <a class="action-btn" (click)="onAdd(pango)"><i class="material-icons">person_add</i></a>
+          </div>
+      </li>
+      </ng-container>
+    </ng-container>
+  </ul>
+</div>

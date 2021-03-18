@@ -1,0 +1,33 @@
+<div>
+  <img src="/assets/img/PangoSignUp.png" id="icon" alt="Pangolin icon"/>
+</div>
+<form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
+  <input type="text" #login="ngModel" [(ngModel)]="pangolinService.selectedPangolin.login" name="login" placeholder="Nom"
+  required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !login.valid }">
+  <div *ngIf="signUpForm.submitted && !login.valid">
+    <label class="validation-message">Donnez un nom à votre pangolin :'(</label>
+  </div>
+  <input type="password" #password="ngModel" [(ngModel)]="pangolinService.selectedPangolin.password" name="password" placeholder="Mot de passe"
+  required [ngClass]="{ 'invalid-textbox' :signUpForm.submitted && !password.valid && login.valid }">
+  <div *ngIf="signUpForm.submitted && !password.valid && login.valid">
+    <label class="validation-message">Sécurisez votre pangolin</label>
+  </div>
+  <input type="text" #age="ngModel" [(ngModel)]="pangolinService.selectedPangolin.age" name="age" placeholder="Age"
+ [ngClass]="{ 'invalid-textbox' :signUpForm.submitted && !age.valid }">
+  <div *ngIf="signUpForm.submitted && !age.valid">
+    <label class="validation-message">Age = nombre</label>
+  </div>
+  <input type="text" #race="ngModel" [(ngModel)]="pangolinService.selectedPangolin.race" name="race" placeholder="Race">
+
+  <input type="text" #nourriture="ngModel" [(ngModel)]="pangolinService.selectedPangolin.nourriture" name="nourriture" placeholder="Nourriture">
+
+  <input type="submit" value="Sign Up">
+</form>
+
+<div class="success" *ngIf="showSuccessMessage">
+  Enregistré !
+</div>
+
+<div class="alert" *ngIf="serverErrorMessage">
+  {{serverErrorMessage}}
+</div>
