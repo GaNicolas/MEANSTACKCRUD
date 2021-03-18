@@ -6,7 +6,8 @@ Environ 8h
 
 ✔️ (Inscription/Connexion/Déconnexion) du "Pangolin" par login/mot de passe <br/>
 ✔️ (Afficher/Modifier) ses informations (age / race / nourriture) <br/>
-✔️ (Ajouter/Supprimer) en amis un autre "Pangolin" à partir d'une liste des autres Pangolins inscrits.
+✔️ (Ajouter/Supprimer) en amis un autre "Pangolin" à partir d'une liste des autres Pangolins inscrits. </br>
+✔️ (Ajouter) un nouveau Pangolin dans le profile.
 
 
 ## Lien de l'application (déployée sur [Heroku][website]) : https://salty-tor-64782.herokuapp.com
